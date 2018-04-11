@@ -1,0 +1,7 @@
+/.gradle/
+/build/
+/cookie.txt
+.classpath
+.project
+.settings
+derby.log

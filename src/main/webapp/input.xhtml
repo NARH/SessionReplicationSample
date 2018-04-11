@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>JSFに触れてみよう</title>
+	<meta charset="utf-8" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:inputText value="#{helloBean.user.name}" />
+		<h:inputText value="#{helloBean.user.age}" />
+		<h:commandButton value="送信" action="#{helloBean.send()}" />
+	</h:form>
+</h:body>
+</html>
