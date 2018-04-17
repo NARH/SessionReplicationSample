@@ -16,18 +16,21 @@ import lombok.extern.slf4j.Slf4j;
 public class SessionResource {
 
   @GET @Path("put/{name}") @Produces(MediaType.APPLICATION_JSON)
-  public User put(@PathParam("name") String name, @QueryParam("age") int age, @Context HttpServletRequest request) {
-    User user = new User(name, age);
+  public User put(@PathParam("name") String name, @QueryParam("age") int age, @QueryParam("zip") String zip,  @Context HttpServletRequest request) {
+    Address address = new Address();
+    address.setZipCode(zip);
+    User user = new User(name, age, address);
     request.getSession().setAttribute("user", user);
     if(log.isInfoEnabled()) log.info("create user session : {}",user);
     return user;
   }
 
   @GET @Path("update/{name}") @Produces(MediaType.APPLICATION_JSON)
-  public User update(@PathParam("name") String name, @QueryParam("age") int age, @Context HttpServletRequest request) {
+  public User update(@PathParam("name") String name, @QueryParam("age") int age, @QueryParam("zip") String zip, @Context HttpServletRequest request) {
     User user = (User) request.getSession().getAttribute("user");
-    if(null == user) user = new User(name, age);
+    if(null == user) user = new User(name, age, new Address());
     user.setAge(age);
+    if(null != zip) user.getAddress().setZipCode(zip);
     if(log.isInfoEnabled()) log.info("update user session : {}",user);
     return user;
   }

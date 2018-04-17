@@ -9,14 +9,15 @@ import javax.enterprise.context.SessionScoped;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author hideki
  *
  */
-@Data @AllArgsConstructor @SessionScoped
+@Data @NoArgsConstructor @AllArgsConstructor @SessionScoped
 public class User implements Serializable {
   private String name;
   private int age;
-  public User() {}
+  private Address address;
 }

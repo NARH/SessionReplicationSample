@@ -29,7 +29,9 @@ repositories {
 
 dependencies {
   compile('ch.qos.logback:logback-classic:1.2.3')
-  compileOnly('fish.payara.extras:payara-micro:4.1.152.1')
+  compileOnly('fish.payara.extras:payara-embedded-web:5.1+')
+  compileOnly('fish.payara.api:payara-api:5.1+')
+  //compileOnly('fish.payara.extras:payara-micro:4.1.152.1')
 }
 
 lombok {

@@ -1,0 +1,31 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:1.13.12-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+  das:
+    image: payara/server-web:4.181
+    ports:
+      - "4848:4848"
+      - "8009:8009"
+      - "8080:8080"
+      - "8181:8181"
+  node01:
+    build: "./docker/payara"
+    ports:
+      - "12222:22"
+      - "14848:24848"
+      - "18009:28009"
+      - "18080:28080"
+      - "18181:28181"
+  node02:
+    build: "./docker/payara"
+    ports:
+      - "22222:22"
+      - "24848:24848"
+      - "28009:28009"
+      - "28080:28080"
+      - "28181:28181"

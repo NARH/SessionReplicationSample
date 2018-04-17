@@ -1,0 +1,15 @@
+FROM payara/server-web:4.181
+
+USER root
+RUN \
+  apt-get update && apt-get install -y --no-install-recommends  openssh-server ; \
+  rm -rf /var/lib/apt/lists/* \
+  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+  && echo "root:root" | chpasswd \
+  && mkdir /run/sshd \
+  && sed -i "s/^exit 101$/exit 0/" /usr/sbin/policy-rc.d \
+  && exec /etc/init.d/ssh start
+
+EXPOSE 22
+
+USER payara
